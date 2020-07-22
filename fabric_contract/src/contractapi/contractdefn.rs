@@ -68,6 +68,8 @@ impl ContractDefn {
         // trace!(">> invoke {} {:#?}",name, args);
         debug!("Invoking tx fn");
 
+        // TODO What's meant to happen to that context?!
+
         let txfn = self.get_txfn(&name[..])?;
         let mut updated_args = Vec::<WireBuffer>::new();
         // got the tx fn, now to loop over the supplied args 
@@ -76,6 +78,7 @@ impl ContractDefn {
                                                 p.type_schema.clone()/*,Box::new(JSONConverter {})*/ )) ;
         }
 
+        // TODO put a ledger and/or transaction instance in the contract struct?
         self.contract.route3(name, updated_args, txfn.get_return())
     }
    

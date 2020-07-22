@@ -36,6 +36,7 @@ use crate::ledgerapi::collection::*;
 /// }
 /// ``` 
 pub struct Ledger {
+    // TODO where is the transactional context?!
 
 }
 
@@ -46,12 +47,13 @@ impl Ledger {
     /// The Tranasctional Context is available via the [Transaction API](../../transaction/struct.Transaction.html)
     /// 
     pub fn access_ledger() -> Ledger {
-       Ledger::new()
+        // TODO where is the transactional context?!
+        Ledger::new()
     }
     
     fn new() -> Ledger {
         Ledger {
-           
+           // TODO where is the transactional context?!
         }
     }
     
@@ -76,7 +78,8 @@ impl Ledger {
     /// let private_collection = ledger.get_collection(CollectionName::Private(String::from("my_private_details")));
     /// ```
     pub fn get_collection(&self, name: CollectionName) -> Collection {
-         Collection::new()
+        // TODO where is the transactional context?!
+        Collection::new()
     }   
 
 }

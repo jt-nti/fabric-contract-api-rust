@@ -17,9 +17,12 @@ impl Context {
         }
     }
 
+    pub fn get_channelid(&mut self) -> &std::string::String {
+        return &self._channel_id;
+    }
+
     pub fn get_txid(&mut self) -> &std::string::String {
         return &self.tx_id;
     }
-
 
 }

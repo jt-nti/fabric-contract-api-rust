@@ -69,7 +69,9 @@ fn handle_tx_invoke(msg: &[u8]) -> CallResult {
     let args = invoke_request.get_args();
     let transient_args = invoke_request.get_transient_args();
     let request_ctx = invoke_request.get_context();
-    let ctx = Context::new(request_ctx);
+    let mut ctx = Context::new(request_ctx);
+
+    // TODO do something with the context here? Seems to end up in a dead end below
 
     // pass over to the contract manager to route
     trace!(
@@ -80,7 +82,7 @@ fn handle_tx_invoke(msg: &[u8]) -> CallResult {
 
     let mut response_msg = InvokeTransactionResponse::new();
 
-    let ret = match ContractManager::route(&ctx, fn_name.to_string(), args, transient_args) {
+    let ret = match ContractManager::route(&mut ctx, fn_name.to_string(), args, transient_args) {
         Ok(r) => {
             let buffer = match r.buffer {
                 Some(r) => r,

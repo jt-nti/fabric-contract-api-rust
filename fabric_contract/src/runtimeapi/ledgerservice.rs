@@ -4,6 +4,7 @@
 
 use crate::runtimeapi::wapc::runtime_host_call;
 use crate::{contract::LedgerError, ledgerapi::*};
+use crate::contractapi::contractmanager::ContractManager;
 
 use protobuf::{parse_from_bytes, Message};
 
@@ -114,8 +115,7 @@ impl LedgerService {
 
     // TODO: need to get the txid from LTS or similar
     fn get_context() -> Result<common_messages::TransactionContext,LedgerError> {
-        let mut tx_context = common_messages::TransactionContext::new();
-        tx_context.set_transaction_id("1234".to_string());
+        let tx_context = ContractManager::get_context();
         Ok(tx_context)
     }
 
